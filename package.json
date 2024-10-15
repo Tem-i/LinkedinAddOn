@@ -1,0 +1,15 @@
+{
+  "name": "linkedinaddon",
+  "version": "1.0.0",
+  "description": "LinkedinAddOn is a new way for RPI students and alumni to connect with eachother faster than ever. By adding this extension to your browser you get access to a database of hundreds of RPI alumni and students linkedins in a simple search area.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "6.9"
+  }
+}
