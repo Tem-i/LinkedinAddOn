@@ -1,0 +1,29 @@
+RCOS Small Group Week 4 (2/2 emails)
+
+These are some emails shared between Anne and I to show our communication before we ultimately had a zoom meeting to hash out ideas:
+
+"Hi Anne,
+
+I hope you have been doing well! We have recently gotten started on RCOS Projects and we currently have a fourth member on our team of all sophomore's working together!
+
+I wanted to ask about ideas you might have to expand on the project's end goal beyond giving undergraduates access to a library of alumni on LinkedIn. After talking and doing research with my groupmates, the goal feels a little small and restricting. We are worried that it does not go beyond being a specified search feature for LinkedIn. Additionally, the features that we have mentioned and though out in the original plan are already used in the official LinkedIn search bar but in a general way. I was wondering if you could possibly give us inspiration on a deeper end goal for this project. 
+
+Additionally, accessing LinkedIn's API is proving to be tricky and/or may cause money. I plan on meeting with Turner to ask about free and safe options but I wanted to check with you to see if you have any connections that might allow us to access the API database for free or access a simple web scraper to pull data off of LinkedIn's API library. Or it would be helpful if there were any possible contacts we could reach for funding.
+
+Thank you so much for your time and your help with this project! I hope we can meet up soon!
+
+Best Regards,
+Temilolu Peters
+
+​----------------
+Temi — Good to hear from you. 
+
+Here’s the problem that we want to solve — creating a virtual networking environment between college students and alumni in related industries, geographies, etc. 
+
+Shall we have a call on Friday to further brainstorm? I can be free at 8:30 am EST for 30 mins, or after 1:30pm EST on Friday. 
+
+Also— how much will it cost for access to the API? 
+
+Thanks,
+Anne 
+-----------

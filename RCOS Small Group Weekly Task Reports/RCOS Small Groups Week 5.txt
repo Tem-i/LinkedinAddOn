@@ -1,0 +1,5 @@
+RCOS Small Groups Week 5 
+
+Week 5
+
+This week was spent making sure every group member did research to understand Node.js and downloaded the program. We also looked at creating branches to start structuring how we may build our project.

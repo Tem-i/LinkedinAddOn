@@ -1,0 +1,3 @@
+RCOS Small Groups Week 6 (Pt 1)
+
+After using a shared doc with research of webscrapers, I reviewed them and spent time looking at the phantom buster web scraper as it would be the most beginner friendly program to use. I spoke to turner about possible access to LinkedIn API and was directed to beautiful soup, which would not work but led me down a rabbit hole that found phantom buster as a possibly helpful scraper. 
