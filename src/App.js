@@ -4,12 +4,13 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // Fetch data from the Express server running on port 5000
-    fetch('http://localhost:5000/api/data')
+    // Fetch data from Express server using IP address instead of localhost
+    fetch('/api/data')
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
+
 
   return (
     <div>

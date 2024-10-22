@@ -9,7 +9,12 @@ const client = new MongoClient(uri);
 const app = express();
 const port = 5000; // Set to a different port than React
 
-app.use(cors());  // Allow cross-origin requests from React
+// CORS configuration: Allow only the React app origin (localhost:3000)
+app.use(cors({
+  origin: 'http://localhost:3000', // Specify React's URL
+  methods: ['GET', 'POST'], // Specify allowed methods
+  credentials: true // Allow credentials if needed
+}));
 
 async function run() {
   try {
@@ -19,7 +24,6 @@ async function run() {
     // Route to get movie data
     app.get('/api/data', async (req, res) => {
       try {
-        // Query for a movie that has the title 'Back to the Future'
         const query = { title: 'Back to the Future' };
         const movie = await movies.findOne(query);
         
@@ -31,8 +35,7 @@ async function run() {
     });
 
   } finally {
-    // We can handle closing the client after server stops if necessary
-    // await client.close();  // Not closing client to keep connection live
+    // Optionally handle closing the client
   }
 }
 
