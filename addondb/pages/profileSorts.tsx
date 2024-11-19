@@ -1,7 +1,7 @@
 import { WithId, Document } from "mongodb";
 
 //Do search sort
-export const phraseRelevancy = (file: WithId<Document>, phrase: string): number => {
+const phraseRelevancy = (file: WithId<Document>, phrase: string): number => {
     if (!phrase) return 0; // If no phrase is provided, return 0
 
     let count = 0;
@@ -34,10 +34,46 @@ export const phraseRelevancy = (file: WithId<Document>, phrase: string): number 
     searchObject(file); // Start searching the movie document
 
     return count; // Return total occurrences
-}
+};
+//Partition phrase for multi search
+export const partitionPhrase = (phrase: string): string[] => {
+    const regex = /"([^"]+)"|(\S+)/g; // Matches quoted substrings or non-whitespace sequences
+    const result: string[] = [];
+    let match;
 
+    while ((match = regex.exec(phrase)) !== null) {
+        // Add quoted substrings or plain words to the result
+        if (match[1]) {
+            result.push(match[1]); // Quoted part
+        } else if (match[2]) {
+            result.push(match[2]); // Unquoted word
+        }
+    }
+
+    return result;
+};
+export const testHelperPrint = (file: WithId<Document>, phrase: string): number => {
+    const phraseList = partitionPhrase(phrase);
+    console.log(file.full_name);
+    //Compare
+    let phraseScore = 0;
+    for(const phra of phraseList){
+        phraseScore += phraseRelevancy(file, phra);
+        console.log(phra + ": " + phraseRelevancy(file, phra))
+    }
+    return phraseScore;
+}
 export const sortProfilesByPhraseCount = (profiles: WithId<Document>[], phrase: string) => {
     return profiles.sort((a, b) => {
-        return phraseRelevancy(b, phrase) - phraseRelevancy(a, phrase);
+        //Turn inputted phrase into multiple phrases
+        const phraseList = partitionPhrase(phrase);
+        //Compare
+        let phraseScoreA = 0;
+        let phraseScoreB = 0;
+        for(const phra of phraseList){
+            phraseScoreA += phraseRelevancy(a, phra);
+            phraseScoreB += phraseRelevancy(b, phra);
+        }
+        return phraseScoreB - phraseScoreA;
     });
 };

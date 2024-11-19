@@ -1,7 +1,7 @@
 import { WithId } from "mongodb";
 import clientPromise from "../../lib/mongodb";
 import { NextApiRequest, NextApiResponse } from 'next';
-import { phraseRelevancy, sortProfilesByPhraseCount } from "../profileSorts";
+import { testHelperPrint, sortProfilesByPhraseCount } from "../profileSorts";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
@@ -14,10 +14,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             .toArray();
         //const profileTitles = profiles.map(profile => profile.full_name);
         //console.log(profileTitles);
-        const sortedProfiles = sortProfilesByPhraseCount(profiles, "Aaron");
+        const sortedProfiles = sortProfilesByPhraseCount(profiles, "PhD university Aaron \"Aaron Thompson\"");
         
         for (const profile of sortedProfiles) {
-            console.log(`${profile.full_name} : ${phraseRelevancy(profile, "Aaron")}\n`);
+            testHelperPrint(profile, "PhD university Aaron \"Aaron Thompson\"");
         }
         
         res.json(sortedProfiles);
@@ -30,5 +30,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 //Look up via education
 //Look up via occupation
 //Loop up via location
-//Lookup sort by relevancy
 //Overall sort education level x years of expierence
