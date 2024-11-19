@@ -1,6 +1,7 @@
 import { WithId } from "mongodb";
 import clientPromise from "../../lib/mongodb";
 import { NextApiRequest, NextApiResponse } from 'next';
+import { phraseRelevancy, sortProfilesByPhraseCount } from "../profileSorts";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
@@ -13,7 +14,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             .toArray();
         //const profileTitles = profiles.map(profile => profile.full_name);
         //console.log(profileTitles);
-        res.json(profiles);
+        const sortedProfiles = sortProfilesByPhraseCount(profiles, "Aaron");
+        
+        for (const profile of sortedProfiles) {
+            console.log(`${profile.full_name} : ${phraseRelevancy(profile, "Aaron")}\n`);
+        }
+        
+        res.json(sortedProfiles);
     } catch (e) {
         console.error(e);
     }
