@@ -2,7 +2,6 @@
 The AlumniNet is a tool to help undergraduate students connect with alumni in a focused, useful way. By using LinkedIn’s API, this extension gives students access to a customized library of alumni profiles that match their career goals and interests.
 
 The program goes beyond basic networking by matching students with alumni who fit their specific needs. For example, a student looking for their first internship could be matched with alumni who recently started working or know about hiring. If a student is considering graduate school, they can be connected with alumni who went on to get advanced degrees.
-
 Once matched, students can use the program’s mentorship features, like resume reviews, mock interviews, project guidance, and conversation starters, to help build connections. This application makes it easier for students to network with a clear path and helpful steps to reach out and get support for their career plans.
 
 ## Technologies Used:
