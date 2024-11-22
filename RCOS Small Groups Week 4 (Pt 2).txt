@@ -1,0 +1,8 @@
+RCOS Small Groups Week 4 (Pt 2)
+
+Additionally my group members started researching the possible use of React, as well as possible designs for our program using Figma.
+
+Our group spent a lot of time discussing one of our group member's (Aliyah's) design on figma and working out the pros and cons of what our design may convey to users, and how user friendly it is.
+
+Here is a link to the suggested design: 
+https://www.figma.com/design/GcpcHpquFi8GjjDh6uBvfu/Untitled?node-id=0-1&t=lU6jLb4g3MahBH0s-1
