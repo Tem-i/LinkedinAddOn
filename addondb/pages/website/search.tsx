@@ -6,6 +6,8 @@ import Searchbar from '@/components/searchbar'
 import  house  from 'bootstrap-icons/icons/house-door.svg'
 import people from 'bootstrap-icons/icons/people.svg'
 import magnifying from 'bootstrap-icons/icons/search.svg'
+import linkedin from 'bootstrap-icons/icons/linkedin.svg'
+import Switch from '@mui/material/Switch'
 
 
 
@@ -21,7 +23,11 @@ const home = () => {
             {/* Top Navbar  */}
             <div className = 'flex w-full bg-green-500 border border-black h-47 justify-between items-center p-4' >
                 <div className='flex itmes-center space-x-4'>
-                    <div className='w-[216px] h-[108px] bg-white rounded-[10px] border border-black' />
+                    <div className=' flex items-center justify-center w-[216px] h-[108px] ' > 
+                        <div className='invert' >
+                            <Image src={linkedin} alt='linkedin logo' width={100} height={100}  />
+                        </div>
+                    </div>
                 </div>
                 <div className='flex items-center space-x-2'>
                     <div className='w-[115px] h-[108px] bg-green-500 rounded-full' />
@@ -52,7 +58,10 @@ const home = () => {
 
                 {/* Main Panel */}
                 <div className='flex-grow flex flex-col w-full h-full bg-[#dedede] space-y-4 p-4'>
-                    <Searchbar />
+                    <div className='flex items-center space-x-4'>
+                        <Searchbar />
+                        <Switch size='' />
+                    </div>
                     <div className='bg-[#f17c4a]/25 w-full h-[37px]'>
                         <div className='flex space-x-4'>
                             <div className="text-black text-base font-['Red Hat Mono']">name</div>
