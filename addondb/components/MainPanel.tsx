@@ -9,7 +9,7 @@ const MainPanel = () => {
 
   return (
     <div>
-        <div className='flex-grow flex flex-col w-full h-full bg-[#dedede] space-y-4 p-4'>
+        <div className='flex flex-col w-full h-full bg-[#dedede] space-y-4 p-4'>
             <div className='flex items-center space-x-4'>
                 <Searchbar />
                 
@@ -21,20 +21,20 @@ const MainPanel = () => {
                 />
                 
             </div>
-            <div className='bg-[#f17c4a]/25 w-full h-[37px]'>
+            {isDisplayChecked && (<div className='bg-[#f17c4a]/25 w-full h-[37px]'>
                 <div className='flex space-x-4'>
                     <div className="text-black text-base font-['Red Hat Mono']">name</div>
                     <div className="text-black text-base font-['Red Hat Mono']">status</div>
                     <div className="text-black text-base font-['Red Hat Mono']">location</div>
                 </div>
-            </div>
+            </div>)}
 
             {/* conditional redner  */}
-            {isDisplayChecked ? (<div className='bg-white/25 w-full h-[654x] p-4'>                      
+            {isDisplayChecked ? (<div className='bg-white/25 w-full flex-grow p-4'>                      
                 <User />
                 <User />
                 <User />
-            </div>) : (<div className='bg-white/25 w-full h-[654x] p-4 flex flex-row'>                      
+            </div>) : (<div className='bg-white/25 w-full flex-grow p-4 flex flex-row'>                      
                 <UserBox />
                 <UserBox />
                 <UserBox />
