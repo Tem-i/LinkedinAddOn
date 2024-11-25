@@ -6,15 +6,19 @@
 import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import User from '@/components/User'
 import Searchbar from '@/components/searchbar'
 import  house  from 'bootstrap-icons/icons/house-door.svg'
 import people from 'bootstrap-icons/icons/people.svg'
 import magnifying from 'bootstrap-icons/icons/search.svg'
+import linkedin from 'bootstrap-icons/icons/linkedin.svg'
+import MainPanel from '@/components/MainPanel'
+
+
 
 
 
 const home = () => {
+
   return (
 
     <div className='flex flex-col h-screen'>
@@ -56,34 +60,9 @@ const home = () => {
                 </div>
 
                 {/* Main Panel */}
-                <div className='flex-grow flex flex-col w-full h-full bg-[#dedede] space-y-4 p-4'>
-                    <Searchbar />
-                    <div className='bg-[#f17c4a]/25 w-full h-[37px]'>
-                        <div className='flex space-x-4'>
-                            <div className="text-black text-base font-['Red Hat Mono']">name</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">status</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">location</div>
-                        </div>
-                    </div>
-
-                    
-                    <div className='bg-white/25 w-full h-[654x] p-4'>
-                        {/* convert to component */}
-                        {/* <div className='flex space-x-4 bg-[#d9d9d9] w-full h-[49px] mt-2'>
-                            <div className="text-black text-base font-['Red Hat Mono']">John Doe</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">Alumni</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">Troy, NY</div>
-                        </div> */}
-                        <User />
-                        <User />
-                        <User />
-                    </div>
+                <div className='flex-grow w-full ' >
+                    <MainPanel />
                 </div>
-                    {/* Visual Display */}
-                    {/* <div className='flex flex-col items-center w-[143px] h-94px] p-4 bg-[#626262] rounded-[20px] text-center text-[13px] font-serif'>
-                        <div className='bg-[d9d9d9] w-[29px h-[26px] rounded-full'></div>
-                        <span>visual display</span>
-                    </div> */}
             </div> 
         </div>
     </div>
