@@ -1,0 +1,4 @@
+RCOS Small Groups #3
+
+
+This week was spent researching web scrapers for Linkedin's API. Since LinkedIn has a very closed off API, our idea was to find a safe and quick web scraper to use to scrape alumni date from Linkedin's API for us to use for our project.

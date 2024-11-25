@@ -1,0 +1,6 @@
+RCOS Small Group Week 2 (1/2)
+
+I spoke closely with our project supervisor (the woman who presented the idea to us), Anne McEntee, and we worked on expanding on our project's end goal since the idea of just a library of alumni is already a vague feature on LinkedIn and we can do more with our project idea. This week I scheduled to meet up with Anne and speak about creating a website that could potentially match an undergraduate LinkedIn user to the best alumni that they could possibly connect with seeing as that could be an idea that makes a big difference. 
+
+In addition to this we continued to research web scrapers and I am currently speaking with Anne about how we might fund our web scraper idea if possible.
+
