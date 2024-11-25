@@ -1,15 +1,24 @@
+//cd addondb
+//npm install
+//npm run dev
+//to open window URL is: http://localhost:3000/website/homepage
+
 import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import User from '@/components/User'
 import Searchbar from '@/components/searchbar'
 import  house  from 'bootstrap-icons/icons/house-door.svg'
 import people from 'bootstrap-icons/icons/people.svg'
 import magnifying from 'bootstrap-icons/icons/search.svg'
+import linkedin from 'bootstrap-icons/icons/linkedin.svg'
+import MainPanel from '@/components/MainPanel'
+
+
 
 
 
 const home = () => {
+
   return (
 
     <div className='flex flex-col h-screen'>
@@ -19,9 +28,9 @@ const home = () => {
 
         <div className = 'flex flex-col w-full h-full bg-white'>
             {/* Top Navbar  */}
-            <div className = 'flex w-full bg-green-500 border border-black h-47 justify-between items-center p-4' >
+            <div className = 'flex w-full bg-[#EED2CC] border-black h-47 justify-between items-center p-4' >
                 <div className='flex itmes-center space-x-4'>
-                    <div className='w-[216px] h-[108px] bg-white rounded-[10px] border border-black' />
+                <div className='w-[216px] h-[108px] bg-white rounded-[10px] border border-black' />
                 </div>
                 <div className='flex items-center space-x-2'>
                     <div className='w-[115px] h-[108px] bg-green-500 rounded-full' />
@@ -38,7 +47,7 @@ const home = () => {
                 
                 
                 {/* Sidebar */}
-                <div className='w-[113px] h-full bg-green-500 border flex flex-col pt-2 items-end'>
+                <div className='w-[113px] h-full bg-[#E8998D] flex flex-col pt-2 items-end'>
                     <button className='w-[50px] h-[190px] rounded-l-lg bg-[#d9d9d9] flex justify-center items-center hover:bg-[#f4f4f4] click:translate-x-[-4px] transition-color duration-200 ' > 
                         <Image src={house} alt="House Icon" width={24} height={24} />
                     </button>
@@ -51,34 +60,9 @@ const home = () => {
                 </div>
 
                 {/* Main Panel */}
-                <div className='flex-grow flex flex-col w-full h-full bg-[#dedede] space-y-4 p-4'>
-                    <Searchbar />
-                    <div className='bg-[#f17c4a]/25 w-full h-[37px]'>
-                        <div className='flex space-x-4'>
-                            <div className="text-black text-base font-['Red Hat Mono']">name</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">status</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">location</div>
-                        </div>
-                    </div>
-
-                    
-                    <div className='bg-white/25 w-full h-[654x] p-4'>
-                        {/* convert to component */}
-                        {/* <div className='flex space-x-4 bg-[#d9d9d9] w-full h-[49px] mt-2'>
-                            <div className="text-black text-base font-['Red Hat Mono']">John Doe</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">Alumni</div>
-                            <div className="text-black text-base font-['Red Hat Mono']">Troy, NY</div>
-                        </div> */}
-                        <User />
-                        <User />
-                        <User />
-                    </div>
+                <div className='flex-grow w-full ' >
+                    <MainPanel />
                 </div>
-                    {/* Visual Display */}
-                    {/* <div className='flex flex-col items-center w-[143px] h-94px] p-4 bg-[#626262] rounded-[20px] text-center text-[13px] font-serif'>
-                        <div className='bg-[d9d9d9] w-[29px h-[26px] rounded-full'></div>
-                        <span>visual display</span>
-                    </div> */}
             </div> 
         </div>
     </div>
