@@ -32,7 +32,7 @@ const home = () => {
                     </div>
                 </div>
                 <div className='flex items-center space-x-2'>
-                    <div className='w-[115px] h-[108px] bg-green-500 rounded-full' />
+                    {/* <div className='w-[115px] h-[108px] bg-green-500 rounded-full' /> */}
                     <div className='text-[#fd0707] text-[64px] font-extrabold font-serif'>RPI</div> 
                     <div className='relative'>
                         <div className="w-[12.28px] h-[0px] left-0 top-[0.35px] absolute origin-top-left rotate-[28.81deg] border-2 border-black"></div>
