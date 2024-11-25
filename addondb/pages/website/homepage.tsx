@@ -1,13 +1,4 @@
-<<<<<<< HEAD:addondb/pages/website/search.tsx
 import React, {useState} from 'react'
-=======
-//cd addondb
-//npm install
-//npm run dev
-//to open window URL is: http://localhost:3000/website/homepage
-
-import React from 'react'
->>>>>>> Temi's-branch:addondb/pages/website/homepage.tsx
 import Head from 'next/head'
 import Image from 'next/image'
 import Searchbar from '@/components/searchbar'
@@ -34,15 +25,11 @@ const home = () => {
             {/* Top Navbar  */}
             <div className = 'flex w-full bg-[#EED2CC] border-black h-47 justify-between items-center p-4' >
                 <div className='flex itmes-center space-x-4'>
-<<<<<<< HEAD:addondb/pages/website/search.tsx
                     <div className=' flex items-center justify-center w-[216px] h-[108px] ' > 
                         <div className='invert' >
                             <Image src={linkedin} alt='linkedin logo' width={100} height={100}  />
                         </div>
                     </div>
-=======
-                <div className='w-[216px] h-[108px] bg-white rounded-[10px] border border-black' />
->>>>>>> Temi's-branch:addondb/pages/website/homepage.tsx
                 </div>
                 <div className='flex items-center space-x-2'>
                     <div className='w-[115px] h-[108px] bg-green-500 rounded-full' />
