@@ -1,6 +1,8 @@
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 const UserBox = () => {
+    const router = useRouter()
   return (
     <div>
         <div className='flex flex-col items-center bg-white border rounded-lg p-4 w-64'>
@@ -14,7 +16,13 @@ const UserBox = () => {
                 <p className='text-gray-600'>Company/Major</p>
             </div>
 
-            <button className='mt-6 px-4 py-2 bg-white border border-black text-black rounded-lg hover:bg-gray-100 '>
+            <button 
+                className='mt-6 px-4 py-2 bg-white border border-black text-black rounded-lg hover:bg-gray-100 '
+                onClick={
+                    () => {
+                        router.push('/website/userprofile')
+                    }
+                }>
                 View Profile
             </button>
         </div>
