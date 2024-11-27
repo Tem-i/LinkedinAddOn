@@ -4,7 +4,7 @@ import {FormControlLabel, Switch} from '@mui/material'
 import User from './user'
 import UserBox from './UserBox'
 
-const MainPanel = () => {
+const SearchPanel = () => {
     const [isDisplayChecked, setIsDisplayChecked] = useState(false)
 
   return (
@@ -55,4 +55,4 @@ const MainPanel = () => {
   )
 }
 
-export default MainPanel
+export default SearchPanel

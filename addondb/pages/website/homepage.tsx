@@ -6,13 +6,23 @@ import  house  from 'bootstrap-icons/icons/house-door.svg'
 import people from 'bootstrap-icons/icons/people.svg'
 import magnifying from 'bootstrap-icons/icons/search.svg'
 import linkedin from 'bootstrap-icons/icons/linkedin.svg'
-import MainPanel from '@/components/MainPanel'
+import SearchPanel from '@/components/SearchPanel'
+import CommunityPanel from '@/components/CommunityPanel'
+import HomePanel from '@/components/HomePanel'
 
 
 
 
 
 const home = () => {
+    //state for active tab
+    const [activeTab, setActiveTab] = useState('home')
+
+
+    //function to handle tab click
+    const handleTabClick = (tab) => {
+        setActiveTab(tab)
+    }
 
   return (
 
@@ -47,21 +57,41 @@ const home = () => {
                 
                 {/* Sidebar */}
                 <div className='w-[113px] h-full bg-[#E8998D] flex flex-col pt-2 items-end'>
-                    <button className='w-[50px] h-[190px] rounded-l-lg bg-[#d9d9d9] flex justify-center items-center hover:bg-[#f4f4f4] click:translate-x-[-4px] transition-color duration-200 ' > 
+                    {/* home tab  */}
+                    <button 
+                    className={`w-[50px] h-[190px] rounded-l-lg flex justify-center items-center hover:bg-[#f4f4f4] transition-color duration-200 ${
+                        activeTab === 'home' ? 'bg-[#f4f4f4]' : 'bg-[#d9d9d9]'
+                      }`}
+                      onClick={() => handleTabClick('home')}
+                    >
                         <Image src={house} alt="House Icon" width={24} height={24} />
                     </button>
-                    <button className='w-[50px] h-[190px] rounded-l-lg bg-[#d9d9d9] flex justify-center items-center hover:bg-[#f4f4f4] click:translate-x-[-4px] transition-color duration-200' >
+
+                    {/* community tab  */}
+                    <button 
+                        className={`w-[50px] h-[190px] rounded-l-lg flex justify-center items-center hover:bg-[#f4f4f4] transition-color duration-200 ${
+                            activeTab === 'community' ? 'bg-[#f4f4f4]' : 'bg-[#d9d9d9]'
+                          }`}
+                          onClick={() => handleTabClick('community')}
+                    >
                         <Image src={people} alt="House Icon" width={24} height={24} />
                     </button>
-                    <button className='w-[50px] h-[190px] rounded-l-lg bg-[#d9d9d9] flex justify-center items-center hover:bg-[#f4f4f4] click:translate-x-[-4px] transition-color duration-200' >
+
+                    {/* Search tab */}
+                    <button className={`w-[50px] h-[190px] rounded-l-lg flex justify-center items-center hover:bg-[#f4f4f4] transition-color duration-200 ${
+                        activeTab === 'search' ? 'bg-[#f4f4f4]' : 'bg-[#d9d9d9]'
+                    }`}
+                    onClick={() => handleTabClick('search')}
+                    >
                         <Image src={magnifying} alt="House Icon" width={24} height={24} />
                     </button>
                 </div>
 
-                {/* Main Panel */}
-                <div className='flex-grow w-full ' >
-                    <MainPanel />
-                </div>
+                <div className='flex-grow w-full'>
+                    {activeTab === 'home' && <HomePanel />}
+                    {activeTab === 'community' && <CommunityPanel />}
+                    {activeTab === 'search' && <SearchPanel />}
+                </div>    
             </div> 
         </div>
     </div>
