@@ -16,7 +16,8 @@ import HomePanel from '@/components/HomePanel'
 
 const home = () => {
     //state for active tab
-    const [activeTab, setActiveTab] = useState('home')
+    const [activeTab, setActiveTab] = useState('community') //for debugging default is set to community should be home
+    
 
 
     //function to handle tab click
@@ -26,24 +27,24 @@ const home = () => {
 
   return (
 
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col h-screen overflow-x-hidden overflow-y-hidden '>
         <Head>
             <title>Alumni Search</title>
         </Head>
 
         <div className = 'flex flex-col w-full h-full bg-white'>
             {/* Top Navbar  */}
-            <div className = 'flex w-full bg-[#EED2CC] border-black h-47 justify-between items-center p-4' >
+            <div className = 'flex w-full bg-[#EED2CC] border-black h-[10%] justify-between items-center p-4' >
                 <div className='flex itmes-center space-x-4'>
-                    <div className=' flex items-center justify-center w-[216px] h-[108px] ' > 
+                    <div className=' flex items-center justify-center w-[15%] h-[108%] ' > 
                         <div className='invert' >
-                            <Image src={linkedin} alt='linkedin logo' width={100} height={100}  />
+                            <Image src={linkedin} alt='linkedin logo' width={200} height={200}  />
                         </div>
                     </div>
                 </div>
                 <div className='flex items-center space-x-2'>
                     {/* <div className='w-[115px] h-[108px] bg-green-500 rounded-full' /> */}
-                    <div className='text-[#fd0707] text-[64px] font-extrabold font-serif'>RPI</div> 
+                    <div className='text-[#fd0707] text-[4rem] font-extrabold font-serif'>RPI</div> 
                     <div className='relative'>
                         <div className="w-[12.28px] h-[0px] left-0 top-[0.35px] absolute origin-top-left rotate-[28.81deg] border-2 border-black"></div>
                         <div className="w-[12.08px] h-[0px] left-[10.76px] top-[6.41px] absolute origin-top-left rotate-[-32.04deg] border-2 border-black"></div>
@@ -87,7 +88,7 @@ const home = () => {
                     </button>
                 </div>
 
-                <div className='flex-grow w-full'>
+                <div className='flex-grow'>
                     {activeTab === 'home' && <HomePanel />}
                     {activeTab === 'community' && <CommunityPanel />}
                     {activeTab === 'search' && <SearchPanel />}

@@ -2,7 +2,11 @@ import React from 'react'
 
 const CommunityPanel = () => {
   return (
-    <div></div>
+    <div>
+        <div className='bg-[#dedede] h-dvh  '>
+
+        </div>
+    </div>
   )
 }
 

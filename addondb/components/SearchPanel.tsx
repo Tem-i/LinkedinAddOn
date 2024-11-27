@@ -8,8 +8,8 @@ const SearchPanel = () => {
     const [isDisplayChecked, setIsDisplayChecked] = useState(false)
 
   return (
-    <div>
-        <div className='flex flex-col w-full h-full bg-[#dedede] space-y-4 p-4'>
+    <div >
+        <div className='flex flex-col w-full h-dvh bg-[#dedede] space-y-4 p-4 '>
             <div className='flex items-center space-x-4'>
                 <Searchbar />
                 
