@@ -5,7 +5,7 @@ const UserBox = () => {
     const router = useRouter()
   return (
     <div>
-        <div className='flex flex-col items-center bg-white border rounded-lg p-4 w-64'>
+        <div className='flex flex-col items-center bg-white border rounded-lg p-4 w-48'>
             {/* Profile Picture */}
             <div className='flex items-center justify-center w-24 h-24 bg-black rounded-full '></div>
 
