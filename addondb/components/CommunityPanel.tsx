@@ -1,45 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {FormControlLabel, Switch} from '@mui/material'
 import Searchbar from './searchbar'
 import UserBox from './UserBox'
 
-const CommunityPanel = () => {
+interface Profile {
+    _id: string
+    full_name: string
+    occupation: string
+    location: string
+}
+
+const CommunityPanel: React.FC = () => {
     const [isDisplayChecked, setIsDisplayChecked] = useState(false)
+    const [suggestedProfiles, setSuggestedProfiles] = useState<Profile[]>([])
+
+    useEffect(() => {
+        const fetchProfiles = async () => {
+            try {
+                const response = await fetch('/api/profiles')
+                const data: Profile[] = await response.json()
+                setSuggestedProfiles(data.slice(0,5))
+            } catch (error) {
+                console.error('Error fetching suggested profiles', error)
+            }
+        }
+
+        fetchProfiles()
+
+    }, [])
+
   return (
     <div>
         <div className='bg-[#dedede] h-dvh  '>
-            {/* <div className='flex-row w-full h-dvh'>
-                <div className='flex flex-col w-full h-dvh bg-[#dedede] space-y-4 p-4 '>
-                    <div className='flex items-center space-x-4'>
-                        <Searchbar />
-                        
-                        <FormControlLabel control={<Switch checked={isDisplayChecked} onChange={(e) => setIsDisplayChecked(e.target.checked)} />} label='Display' sx={{
-                            '& .MuiFormControlLabel-label' : {
-                                color: 'black',
-                            },
-                        }} 
-                        />
-                        <div className='flex text-4xl text-black'>
-                            My Connections
-                        </div>
-                    </div>
-                    <div className='flex'>
-                        <div className='bg-[#d2a8a8] p-4 rounded-lg text-black ' >
-                            Suggested for you
-                            <div className='flex space-x-2 '>
-                                <UserBox />
-                                <UserBox />
-                                <UserBox />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex space-x-2'>
-                        <UserBox />
-                        <UserBox />
-                        <UserBox />
-                    </div>
-                </div>
-            </div> */}
             <div className='flex flex-col'>
 
                 <div className='flex  bg-[#dedede] spacey-y-4 p-4'>
@@ -64,19 +56,17 @@ const CommunityPanel = () => {
                                 Suggested Connections
                             </div>
                             <div className='flex space-x-4'>
-                                <UserBox />
-                                <UserBox />
-                                <UserBox />
-                                <UserBox />
-                                <UserBox />
+                               {suggestedProfiles.map((profile) => (
+                                <UserBox key={profile._id} profile={profile} />
+                               ))}
                             </div>
                         </div>
                         <div className='flex space-x-2 p-4'>
+                            {/* <UserBox />
                             <UserBox />
                             <UserBox />
                             <UserBox />
-                            <UserBox />
-                            <UserBox />
+                            <UserBox /> */}
                         </div>
                     </div>
                     <div className='flex flex-col justify-start items-center'>

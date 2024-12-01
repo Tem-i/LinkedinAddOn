@@ -16,9 +16,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         //console.log(profileTitles);
         const sortedProfiles = sortProfilesByPhraseCount(profiles, "PhD university Aaron \"Aaron Thompson\"");
         
-        for (const profile of sortedProfiles) {
-            testHelperPrint(profile, "PhD university Aaron \"Aaron Thompson\"");
-        }
+        // for (const profile of sortedProfiles) {
+        //     testHelperPrint(profile, "PhD university Aaron \"Aaron Thompson\"");
+        // }
         
         res.json(sortedProfiles);
     } catch (e) {

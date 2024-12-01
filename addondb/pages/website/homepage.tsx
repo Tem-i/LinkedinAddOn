@@ -85,6 +85,7 @@ const home = () => {
                     onClick={() => handleTabClick('search')}
                     >
                         <Image src={magnifying} alt="House Icon" width={24} height={24} />
+                        
                     </button>
                 </div>
 

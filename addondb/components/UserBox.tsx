@@ -1,7 +1,14 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
-const UserBox = () => {
+interface Profile {
+    _id: string
+    full_name: string
+    occupation: string
+    location: string
+}
+
+const UserBox: React.FC<{profile: Profile}> = ({ profile }) => {
     const router = useRouter()
   return (
     <div>
@@ -11,9 +18,9 @@ const UserBox = () => {
 
             {/* Text Information  */}
             <div className='text-center space-y-1'>
-                <p className='font bold text-lg text-black'>Student Name</p>
-                <p className='text-gray-600'>Location</p>
-                <p className='text-gray-600'>Company/Major</p>
+                <p className='font bold text-lg text-black'>{profile.full_name}</p>
+                <p className='text-gray-600'>{profile.location}</p>
+                <p className='text-gray-600'>{profile.occupation}</p>
             </div>
 
             <button 
