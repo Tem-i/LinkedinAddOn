@@ -16,7 +16,7 @@ import HomePanel from '@/components/HomePanel'
 
 const home = () => {
     //state for active tab
-    const [activeTab, setActiveTab] = useState('community') //for debugging default is set to community should be home
+    const [activeTab, setActiveTab] = useState('search') //for debugging default is set to community should be home
     
 
 

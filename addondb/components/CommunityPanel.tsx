@@ -13,6 +13,22 @@ interface Profile {
 const CommunityPanel: React.FC = () => {
     const [isDisplayChecked, setIsDisplayChecked] = useState(false)
     const [suggestedProfiles, setSuggestedProfiles] = useState<Profile[]>([])
+    const [searchResults, setSearchResults] = useState<Profile[]>([])
+
+    const handleSearch = async (query: string) => {
+        if(!query){
+            setSearchResults([])
+            return
+        }
+
+        try {
+            const response = await fetch(`/api/search?query=${encodeURIComponent(query)}`)
+            const data: Profile[] = await response.json()
+            setSearchResults(data)
+        } catch (error) {
+            console.error('Error performing search:',error)
+        }
+    }
 
     useEffect(() => {
         const fetchProfiles = async () => {
@@ -36,7 +52,7 @@ const CommunityPanel: React.FC = () => {
 
                 <div className='flex  bg-[#dedede] spacey-y-4 p-4'>
                     <div className='flex items-center space-x-4'>
-                        <Searchbar />
+                        <Searchbar onSearch={handleSearch} />
                         
                         <FormControlLabel control={<Switch checked={isDisplayChecked} onChange={(e) => setIsDisplayChecked(e.target.checked)} />} label='Display' sx={{
                             '& .MuiFormControlLabel-label' : {
@@ -62,11 +78,6 @@ const CommunityPanel: React.FC = () => {
                             </div>
                         </div>
                         <div className='flex space-x-2 p-4'>
-                            {/* <UserBox />
-                            <UserBox />
-                            <UserBox />
-                            <UserBox />
-                            <UserBox /> */}
                         </div>
                     </div>
                     <div className='flex flex-col justify-start items-center'>
