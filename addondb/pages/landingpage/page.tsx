@@ -3,7 +3,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-<div className="w-[1440px] h-[1024px] relative bg-white">
+      <div className="w-[1440px] h-[1024px] relative bg-white">
     <div className="w-[1440px] h-[73px] left-0 top-0 absolute bg-white" />
     <div className="w-[259px] h-16 left-[1172px] top-[14px] absolute bg-[#fb787b]/90 rounded-[40px]" />
     <div className="w-[276px] h-[73px] left-0 top-0 absolute bg-white" />
@@ -53,6 +53,7 @@ const page = () => {
     <div className="w-[186px] h-[22px] left-[339px] top-[623px] absolute text-black text-[22px] font-normal font-['Roboto']">Internship Seeker</div>
     <div className="w-[186px] h-6 left-[685px] top-[544px] absolute text-black text-[22px] font-normal font-['Roboto']">Graduate</div>
 </div>
+
     </div>
   )
 }
