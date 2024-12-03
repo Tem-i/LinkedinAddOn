@@ -12,22 +12,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             .find()
             .limit(10)
             .toArray();
-        //const profileTitles = profiles.map(profile => profile.full_name);
-        //console.log(profileTitles);
         const sortedProfiles = sortProfilesByPhraseCount(profiles, "PhD university Aaron \"Aaron Thompson\"");
-        
-        for (const profile of sortedProfiles) {
-            testHelperPrint(profile, "PhD university Aaron \"Aaron Thompson\"");
-        }
-        
         res.json(sortedProfiles);
     } catch (e) {
         console.error(e);
     }
 }
-
-//Look up via name include search in summary
-//Look up via education
-//Look up via occupation
-//Loop up via location
-//Overall sort education level x years of expierence
