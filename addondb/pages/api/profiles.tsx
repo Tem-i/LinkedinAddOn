@@ -10,10 +10,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const profiles = await db
             .collection("Profiles")
             .find()
-            .limit(10)
+            .limit(1)
             .toArray();
-        const sortedProfiles = sortProfilesByPhraseCount(profiles, "PhD university Aaron \"Aaron Thompson\"");
-        res.json(sortedProfiles);
+        //const sortedProfiles = sortProfilesByPhraseCount(profiles, "PhD university Aaron \"Aaron Thompson\"");
+        res.json(profiles);
     } catch (e) {
         console.error(e);
     }
