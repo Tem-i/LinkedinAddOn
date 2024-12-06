@@ -1,3 +1,5 @@
+import { WithId } from "mongodb";
+import { sortMoviesByTitle, sortMoviesByViewerRating, sortMoviesByAllRatings } from '../movieSorts';
 import clientPromise from "../../lib/mongodb";
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -8,10 +10,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const movies = await db
             .collection("movies")
             .find({})
-            .sort({ metacritic: -1 })
+            .sort({metacritic: -1})
             .limit(10)
             .toArray();
-        res.json(movies);
+        const sortedMovies = sortMoviesByAllRatings(movies);
+        res.json(sortedMovies);
     } catch (e) {
         console.error(e);
     }
