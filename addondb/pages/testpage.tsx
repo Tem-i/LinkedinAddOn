@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Profile = {
   _id: string;
@@ -95,40 +95,82 @@ const ProfileDetails: React.FC<{ profile: Profile }> = ({ profile }) => {
 };
 
 export default function TestPage() {
-  const profile: Profile = {
-    _id: "6733cc98cd0dfa271a9abe12",
-    full_name: "Jeff B.",
-    occupation: "AVP, Life Underwriting at Illinois Mutual",
-    headline: "Illinois Mutual",
-    country_full_name: "United States of America",
-    city: "Normal",
-    state: "Illinois",
-    experiences: [
-      {
-        starts_at: { day: 1, month: 8, year: 2018 },
-        ends_at: null,
-        company: "Illinois Mutual",
-        title: "AVP, Life Underwriting",
-        location: "Peoria, Illinois Area",
-      },
-    ],
-    education: [
-      {
-        school: "Illinois State University",
-        degree_name: "BS",
-        field_of_study: "Criminal  Justice",
-      },
-    ],
-    certifications: [
-      { name: "AIRC", authority: "LOMA" },
-      { name: "ALMI, ACS", authority: "LOMA" },
-    ],
+  const [query, setQuery] = useState("");
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`/api/profiles?query=${encodeURIComponent(query)}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch profile");
+      }
+      const data = await response.json();
+      setProfile(data[0]);
+      setError(null);
+    } catch (err) {
+      setProfile(null);
+    }
   };
 
   return (
-    <div className="bg-black text-white min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-6">Profile Example</h1>
-      <ProfileDetails profile={profile} />
+    <div
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        minHeight: "100vh",
+        padding: "24px",
+      }}
+    >
+      <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "16px" }}>
+        Profile Search
+      </h1>
+      <div style={{ marginBottom: "16px" }}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Enter search query..."
+          style={{
+            padding: "8px",
+            width: "300px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            color: "#555555",
+          }}
+        />
+        <button
+          onClick={handleSearch}
+          style={{
+            marginLeft: "8px",
+            padding: "8px 16px",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Search
+        </button>
+      </div>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {profile ? (
+        <div
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            padding: "16px",
+            borderRadius: "8px",
+          }}
+        >
+          <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>{profile.full_name}</h2>
+          {profile.occupation && <p><strong>Occupation:</strong> {profile.occupation}</p>}
+          {profile.headline && <p><strong>Headline:</strong> {profile.headline}</p>}
+        </div>
+      ) : (
+        <p>No profile to display</p>
+      )}
     </div>
   );
 }
