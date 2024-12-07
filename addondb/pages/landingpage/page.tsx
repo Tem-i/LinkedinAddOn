@@ -38,7 +38,9 @@ const Page = () => {
       {/* Top Bar */}
       <div className="h-16 flex items-center justify-between px-6 shadow-md">
         <div className="flex flex-row items-center space-x-3">
-          <Image src="/Group13.svg" alt="menu" width={24} height={24} />
+          <button onClick={() => alert('Menu Clicked')} className="hover:cursor-pointer">
+            <Image src="/Group13.svg" alt="menu" width={24} height={24} />
+          </button>
           <div className="text-black font-bold text-4xl">AlumniNet</div>
         </div>
         <div className="space-x-5">
@@ -83,7 +85,7 @@ const Page = () => {
                   backgroundColor: selectedFeatures.includes(feature) ? '#e8998d' : '#f3f3f3',
                   color: selectedFeatures.includes(feature) ? 'white' : 'black',
                 }}
-                className="py-2 px-6 rounded-full shadow-md text-lg w-[30%] max-w-xs text-center"
+                className="py-2 px-6 rounded-full shadow-md text-lg w-[30%] max-w-xs text-center hover:bg-[#f5b6ac]"
               >
                 {feature}
               </button>
