@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import Image from 'next/image';
 
 const Page = () => {
-  // State to track selected features
+  // State to track selected features (multiple selections allowed)
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
-  // Features list
+  // List of features
   const features = [
     'Undergraduate',
     'Graduate',
@@ -20,19 +20,21 @@ const Page = () => {
     'Exploring Career Paths',
   ];
 
-  // Handle button click
+  // Toggle button selection
   const handleButtonClick = (feature) => {
-    if (selectedFeatures.includes(feature)) {
-      // If the feature is already selected, remove it from the array
-      setSelectedFeatures(selectedFeatures.filter((item) => item !== feature));
-    } else {
-      // If the feature is not selected, add it to the array
-      setSelectedFeatures([...selectedFeatures, feature]);
-    }
+    setSelectedFeatures((prevSelected) => {
+      if (prevSelected.includes(feature)) {
+        // Remove feature if already selected
+        return prevSelected.filter((item) => item !== feature);
+      } else {
+        // Add feature to the selection
+        return [...prevSelected, feature];
+      }
+    });
   };
 
   return (
-    <div className="bg-white h-screen w-screen">
+    <div className="bg-white h-screen w-screen flex flex-col justify-between">
       {/* Top Bar */}
       <div className="h-16 flex items-center justify-between px-6 shadow-md">
         <div className="flex flex-row items-center space-x-3">
@@ -72,7 +74,7 @@ const Page = () => {
         {/* Feature Buttons */}
         <div className="text-center">
           <p className="text-gray-500 text-lg">Get started by choosing which features apply to you:</p>
-          <div className="flex flex-wrap justify-center gap-4 mt-6">
+          <div className="flex flex-wrap justify-center gap-6 mt-6">
             {features.map((feature) => (
               <button
                 key={feature}
@@ -81,13 +83,19 @@ const Page = () => {
                   backgroundColor: selectedFeatures.includes(feature) ? '#e8998d' : '#f3f3f3',
                   color: selectedFeatures.includes(feature) ? 'white' : 'black',
                 }}
-                className="py-2 px-4 rounded-full shadow-md text-lg"
+                className="py-2 px-6 rounded-full shadow-md text-lg w-[30%] max-w-xs text-center"
               >
                 {feature}
               </button>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="bg-[#e8998d] py-4 flex justify-center space-x-10 items-center">
+        <a href="#" className="text-black text-lg hover:underline">About AlumniNet</a>
+        <a href="#" className="text-black text-lg hover:underline">Support Us</a>
       </div>
     </div>
   );
