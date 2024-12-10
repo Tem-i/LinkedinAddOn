@@ -31,8 +31,11 @@ export default function Home({
   isConnected,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter(); 
-  const handleRedirect = () => {
+  const handleRedirectToTestpage = () => {
     router.push("/testpage"); // Navigate to the testpage
+  };
+  const handleRedirectToHomepage = () => {
+    router.push("/homepage"); // Navigate to the homepage
   };
   return (
     <main>
@@ -48,10 +51,16 @@ export default function Home({
           </h2>
         )}
         <button
-          onClick={handleRedirect}
+          onClick={handleRedirectToTestpage}
           className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
         >
           Go to Test Page
+        </button>
+        <button
+          onClick={handleRedirectToHomepage}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Go to Home Page
         </button>
       </div>
     </main>
