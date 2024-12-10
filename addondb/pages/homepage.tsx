@@ -30,72 +30,99 @@ type Profile = {
   };
   
   const ProfileDetails: React.FC<{ profile: Profile }> = ({ profile }) => {
-    return (
-      <div className="p-4 border rounded-md shadow-md bg-black mb-4">
-        <h2 className="text-xl font-bold mb-2">{profile.full_name}</h2>
-        {profile.occupation && <p><strong>Occupation:</strong> {profile.occupation}</p>}
-        {profile.headline && <p><strong>Headline:</strong> {profile.headline}</p>}
-        {profile.city && profile.state && (
-          <p>
-            <strong>Location:</strong> {profile.city}, {profile.state}
-          </p>
-        )}
-        {profile.country_full_name && <p><strong>Country:</strong> {profile.country_full_name}</p>}
-        
-        {profile.experiences && profile.experiences.length > 0 && (
-          <div className="mt-4">
-            <h3 className="text-lg font-semibold">Experiences</h3>
-            <ul className="list-disc ml-6">
-              {profile.experiences.map((exp, idx) => (
-                <li key={idx}>
-                  <p><strong>Company:</strong> {exp.company}</p>
-                  <p><strong>Title:</strong> {exp.title}</p>
-                  {exp.location && <p><strong>Location:</strong> {exp.location}</p>}
-                  {exp.starts_at && exp.ends_at && (
-                    <p>
-                      <strong>Duration:</strong> {`${exp.starts_at.month}/${exp.starts_at.year} - ${exp.ends_at.month}/${exp.ends_at.year}`}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        
-        {profile.education && profile.education.length > 0 && (
-          <div className="mt-4">
-            <h3 className="text-lg font-semibold">Education</h3>
-            <ul className="list-disc ml-6">
-              {profile.education.map((edu, idx) => (
-                <li key={idx}>
-                  <p><strong>School:</strong> {edu.school}</p>
-                  {edu.degree_name && <p><strong>Degree:</strong> {edu.degree_name}</p>}
-                  {edu.field_of_study && <p><strong>Field of Study:</strong> {edu.field_of_study}</p>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+    const [isExpanded, setIsExpanded] = useState(false);
   
-        {profile.certifications && profile.certifications.length > 0 && (
+    return (
+      <div className="p-4 mb-4" style={{ backgroundColor: "#f4f4f4", color: "#000000", border: "none", borderRadius: "8px" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <h2 className="text-xl font-bold mb-2" style={{ flex: 1 }}>
+            {profile.full_name}
+          </h2>
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            style={{
+              backgroundColor: "transparent",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "20px",
+              padding: "0",
+              marginLeft: "10px",
+            }}
+          >
+            {isExpanded ? "▲" : "▼"} {/* Up/down arrow */}
+          </button>
+        </div>
+  
+        {/* Show only Headline, Occupation, and Location initially */}
+        <p><strong>Occupation:</strong> {profile.occupation}</p>
+        {profile.headline && <p><strong>Headline:</strong> {profile.headline}</p>}
+        
+        <p style={{ display: "flex", alignItems: "center" }}>
+          <strong>Location:&nbsp;</strong> {profile.city && profile.state ? `${profile.city}, ${profile.state}` : "N/A"}{" "}
+          {profile.country_full_name && (
+            <span style={{ marginLeft: "10px" }}><strong>Country:</strong> {profile.country_full_name}</span>
+          )}
+        </p>
+  
+        {/* Dropdown to expand/collapse additional profile details */}
+        {isExpanded && (
           <div className="mt-4">
-            <h3 className="text-lg font-semibold">Certifications</h3>
-            <ul className="list-disc ml-6">
-              {profile.certifications.map((cert, idx) => (
-                <li key={idx}>
-                  <p><strong>Certification:</strong> {cert.name}</p>
-                  {cert.authority && <p><strong>Authority:</strong> {cert.authority}</p>}
-                </li>
-              ))}
-            </ul>
+            {profile.experiences && profile.experiences.length > 0 && (
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold">Experiences</h3>
+                <ul className="list-disc ml-6">
+                  {profile.experiences.map((exp, idx) => (
+                    <li key={idx}>
+                      <p><strong>Company:</strong> {exp.company}</p>
+                      <p><strong>Title:</strong> {exp.title}</p>
+                      {exp.location && <p><strong>Location:</strong> {exp.location}</p>}
+                      {exp.starts_at && exp.ends_at && (
+                        <p>
+                          <strong>Duration:</strong> {`${exp.starts_at.month}/${exp.starts_at.year} - ${exp.ends_at.month}/${exp.ends_at.year}`}
+                        </p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+  
+            {profile.education && profile.education.length > 0 && (
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold">Education</h3>
+                <ul className="list-disc ml-6">
+                  {profile.education.map((edu, idx) => (
+                    <li key={idx}>
+                      <p><strong>School:</strong> {edu.school}</p>
+                      {edu.degree_name && <p><strong>Degree:</strong> {edu.degree_name}</p>}
+                      {edu.field_of_study && <p><strong>Field of Study:</strong> {edu.field_of_study}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+  
+            {profile.certifications && profile.certifications.length > 0 && (
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold">Certifications</h3>
+                <ul className="list-disc ml-6">
+                  {profile.certifications.map((cert, idx) => (
+                    <li key={idx}>
+                      <p><strong>Certification:</strong> {cert.name}</p>
+                      {cert.authority && <p><strong>Authority:</strong> {cert.authority}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>
     );
   };
+  
 
 const SearchBarAndButton: React.FC = () => {
-  
     const [query, setQuery] = useState("");
     const [profiles, setProfiles] = useState<Profile[]>([]);
     const [error, setError] = useState<string | null>(null);
@@ -107,7 +134,7 @@ const SearchBarAndButton: React.FC = () => {
         throw new Error("Failed to fetch profile");
       }
       const data = await response.json();
-      setProfiles(data.slice(0,5));
+      setProfiles(data.slice(0,10));
       setError(null);
     } catch (err) {
       
@@ -190,29 +217,29 @@ const SearchBarAndButton: React.FC = () => {
       </div>
     
     {error && <p style={{ color: "red" }}>{error}</p>}
-    {profiles.length > 0 ? (
-      <div>
-        {profiles.map((profile) => (
-          <div
-            key={profile._id}
-            style={{
-              backgroundColor: "white",
-              color: "black",
-              padding: "16px",
-              borderRadius: "8px",
-              marginBottom: "16px",
-            }}
-          >
-            <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>{profile.full_name}</h2>
-            {profile.occupation && <p><strong>Occupation:</strong> {profile.occupation}</p>}
-            {profile.headline && <p><strong>Headline:</strong> {profile.headline}</p>}
+    {/* Profile list container with scroll */}
+    <div
+        style={{
+          width: "100%",
+          maxHeight: "70vh", // Limit the height
+          overflowY: "auto", // Enable scrolling
+          padding: "20px",
+          marginTop: "20px",
+          color: "#ffffff",
+          backgroundColor: "#e7998d",
+        }}
+      >
+        {profiles.length > 0 ? (
+          <div>
+            {profiles.map((profile) => (
+              <ProfileDetails key={profile._id} profile={profile} />
+            ))}
           </div>
-        ))}
-        </div>
         ) : (
-          <p>No profile to display</p>
-      )}
+          <p>No profiles to display</p>
+        )}
       </div>
+    </div>
   );
 };
 
