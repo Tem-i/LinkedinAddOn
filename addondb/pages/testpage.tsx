@@ -96,7 +96,7 @@ const ProfileDetails: React.FC<{ profile: Profile }> = ({ profile }) => {
 
 export default function TestPage() {
   const [query, setQuery] = useState("");
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const [profiles, setProfiles] = useState<Profile[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async () => {
@@ -106,10 +106,10 @@ export default function TestPage() {
         throw new Error("Failed to fetch profile");
       }
       const data = await response.json();
-      setProfile(data[0]);
+      setProfiles(data.slice(0,5));
       setError(null);
     } catch (err) {
-      setProfile(null);
+      
     }
   };
 
@@ -155,22 +155,28 @@ export default function TestPage() {
         </button>
       </div>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {profile ? (
-        <div
-          style={{
-            backgroundColor: "white",
-            color: "black",
-            padding: "16px",
-            borderRadius: "8px",
-          }}
-        >
-          <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>{profile.full_name}</h2>
-          {profile.occupation && <p><strong>Occupation:</strong> {profile.occupation}</p>}
-          {profile.headline && <p><strong>Headline:</strong> {profile.headline}</p>}
-        </div>
-      ) : (
-        <p>No profile to display</p>
-      )}
+      {profiles.length > 0 ? (
+        <div>
+          {profiles.map((profile) => (
+            <div
+              key={profile._id}
+              style={{
+                backgroundColor: "white",
+                color: "black",
+                padding: "16px",
+                borderRadius: "8px",
+                marginBottom: "16px",
+              }}
+            >
+              <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>{profile.full_name}</h2>
+              {profile.occupation && <p><strong>Occupation:</strong> {profile.occupation}</p>}
+              {profile.headline && <p><strong>Headline:</strong> {profile.headline}</p>}
+            </div>
+          ))}
+          </div>
+          ) : (
+            <p>No profile to display</p>
+        )}
     </div>
   );
 }
