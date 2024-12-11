@@ -101,7 +101,7 @@ export default function TestPage() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/api/profiles?query=${encodeURIComponent(query)}`);
+      const response = await fetch(`/api/profiles?query=${encodeURIComponent(query)}&isGraduate=false&isPhD=false`);
       if (!response.ok) {
         throw new Error("Failed to fetch profile");
       }

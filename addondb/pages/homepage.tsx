@@ -127,9 +127,12 @@ const SearchBarAndButton: React.FC = () => {
     const [profiles, setProfiles] = useState<Profile[]>([]);
     const [error, setError] = useState<string | null>(null);
 
+    const [isGraduate, setIsGraduate] = useState(false);
+    const [isPhD, setIsPhD] = useState(false);
+
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/api/profiles?query=${encodeURIComponent(query)}`);
+      const response = await fetch(`/api/profiles?query=${encodeURIComponent(query)}&isGraduate=${isGraduate}&isPhD=${isPhD}`);
       if (!response.ok) {
         throw new Error("Failed to fetch profile");
       }
@@ -137,7 +140,7 @@ const SearchBarAndButton: React.FC = () => {
       setProfiles(data.slice(0,10));
       setError(null);
     } catch (err) {
-      
+        console.error("Error during search:", err);
     }
   };
 
@@ -215,7 +218,38 @@ const SearchBarAndButton: React.FC = () => {
           ?
         </button>
       </div>
-    
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <button
+          onClick={() => setIsGraduate((prev) => !prev)}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            borderRadius: "25px",
+            border: isGraduate ? "2px solid #007bff" : "2px solid #ccc",
+            backgroundColor: isGraduate ? "#007bff" : "#efefef",
+            color: isGraduate ? "#fff" : "#000",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
+          }}
+        >
+          Graduate
+        </button>
+        <button
+          onClick={() => setIsPhD((prev) => !prev)}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            borderRadius: "25px",
+            border: isPhD ? "2px solid #007bff" : "2px solid #ccc",
+            backgroundColor: isPhD ? "#007bff" : "#efefef",
+            color: isPhD ? "#fff" : "#000",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
+          }}
+        >
+          PhD
+        </button>
+      </div>
     {error && <p style={{ color: "red" }}>{error}</p>}
     {/* Profile list container with scroll */}
     <div
@@ -229,6 +263,8 @@ const SearchBarAndButton: React.FC = () => {
           backgroundColor: "#e7998d",
         }}
       >
+        {profiles.length} Compatible Profiles Found
+        
         {profiles.length > 0 ? (
           <div>
             {profiles.map((profile) => (

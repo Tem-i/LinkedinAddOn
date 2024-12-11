@@ -63,7 +63,15 @@ export const testHelperPrint = (file: WithId<Document>, phrase: string): number 
     }
     return phraseScore;
 }
-export const sortProfilesByPhraseCount = (profiles: WithId<Document>[], phrase: string) => {
+export const sortProfilesByPhraseCount = (profiles: WithId<Document>[], phrase: string, isGraduate: boolean, isPhD: boolean) => {
+    const filteredProfiles = profiles.filter((profile) => {
+        const hasGraduate = profile.education !== null && profile.education !== undefined;
+        const hasPhD = profile.education?.some((edu: any) => edu.degree_name === "PhD");
+        return (
+            (!isGraduate || hasGraduate) && // If isGraduate is true, include profiles with Graduate degrees
+            (!isPhD || hasPhD) // If isPhD is true, include profiles with PhDs
+        );
+    });
     return profiles.sort((a, b) => {
         //Turn inputted phrase into multiple phrases
         const phraseList = partitionPhrase(phrase);
